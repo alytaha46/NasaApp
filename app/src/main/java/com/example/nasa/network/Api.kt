@@ -10,7 +10,7 @@ import retrofit2.http.GET
 
 
 interface Image {
-    @GET("?api_key=a0mqJoakhIMBZGKEo9cMCnsJUmGYxhvglCYB4niD")
+    @GET("?api_key=")
     fun getPlaylist(): Deferred<Response>
 }
 
