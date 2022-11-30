@@ -1,8 +1,11 @@
 package com.example.nasa.network.dataTransfareObject
 
+import com.example.nasa.constants.Constants
 import com.example.nasa.database.ImageOfTheDayRoom
 import com.squareup.moshi.JsonClass
 import com.squareup.moshi.Json
+import java.text.SimpleDateFormat
+import java.util.*
 
 @JsonClass(generateAdapter = true)
 data class ImageofTheDayResponse(
@@ -33,6 +36,8 @@ data class ImageofTheDayResponse(
 )
 
 fun ImageofTheDayResponse.asDatabaseModel(): ImageOfTheDayRoom {
-    return ImageOfTheDayRoom(url, mediaType, title)
+    val formatter = SimpleDateFormat(Constants.API_QUERY_DATE_FORMAT, Locale.getDefault())
+    val dateParsed: Date = formatter.parse(date) as Date
+    return ImageOfTheDayRoom(url, mediaType, dateParsed, title)
 }
 
