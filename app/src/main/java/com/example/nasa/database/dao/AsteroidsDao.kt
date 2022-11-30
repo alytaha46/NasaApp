@@ -9,9 +9,9 @@ import com.example.nasa.database.model.AsteroidsRoom
 
 @Dao
 interface AsteroidsDao {
-    @Query("select * from AsteroidsRoom")
+    @Query("select * from AsteroidsRoom WHERE date >= DATE() ORDER BY date ASC")
     fun getAsteroids(): LiveData<List<AsteroidsRoom>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAsteroids(vararg: AsteroidsRoom)
+    suspend fun insertAsteroids(list: List<AsteroidsRoom>)
 }
