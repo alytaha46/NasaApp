@@ -10,10 +10,12 @@ data class ImageOfTheDay(
 )
 @Parcelize
 data class Asteroids(
-    val id: String,
+    val id: Long,
+    val name:String,
+    val date:String,
     val absolute_magnitude: Double,
     val estimated_diameter_max: Double,
     val is_potentially_hazardous_asteroid: Boolean,
     val kilometers_per_second: Double,
-    val astronomical: Double
+    val distanceFromEarth: Double
 ) : Parcelable
