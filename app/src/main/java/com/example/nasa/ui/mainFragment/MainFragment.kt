@@ -1,4 +1,4 @@
-package com.example.nasa.ui
+package com.example.nasa.ui.mainFragment
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -11,14 +11,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.example.nasa.R
-import com.example.nasa.constants.Constants
 import com.example.nasa.databinding.FragmentMainBinding
-import com.example.nasa.network.Network.networkCall
 import com.example.nasa.viewmodels.MainViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
 import java.util.*
 
 

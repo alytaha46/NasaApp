@@ -41,6 +41,7 @@ class Repository(private val database: NasaDatabase) {
                 val jsonResponse: JSONObject = JSONObject(response)
                 val asteroidsList: List<AsteroidsRoom> = parseAsteroidsJsonResult(jsonResponse)
                 database.AsteroidsDao.insertAsteroids(asteroidsList)
+                database.AsteroidsDao.deleteOldAsteroids(getTodayLong())
             } catch (e: Exception) {
                 Log.e("Asteroids Exception", "refreshAsteroids: ${e.message}")
             }
@@ -52,6 +53,7 @@ class Repository(private val database: NasaDatabase) {
             try {
                 val response: ImageofTheDayResponse = Network.networkCall.getImageOfTheDay().await()
                 database.ImageOfTheDayDao.insertImage(response.asDatabaseModel())
+                database.ImageOfTheDayDao.deleteOldImage()
             } catch (e: Exception) {
                 Log.e("Image Exception", "refreshAsteroids: ${e.message}")
             }

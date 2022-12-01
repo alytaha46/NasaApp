@@ -14,4 +14,7 @@ interface ImageOfTheDayDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertImage(vararg img: ImageOfTheDayRoom)
+
+    @Query("delete from ImageOfTheDayRoom where date NOT IN (select date from ImageOfTheDayRoom ORDER BY date DESC LIMIT 1)")
+    suspend fun deleteOldImage()
 }

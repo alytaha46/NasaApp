@@ -14,4 +14,7 @@ interface AsteroidsDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertAsteroids(list: List<AsteroidsRoom>)
+
+    @Query("delete from AsteroidsRoom where date < :today")
+    suspend fun deleteOldAsteroids(today:Long)
 }
