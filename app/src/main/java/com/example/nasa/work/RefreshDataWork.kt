@@ -20,7 +20,6 @@ class RefreshDataWork(appContext: Context, params: WorkerParameters) :
         val database = getDatabase(applicationContext)
         val repository = Repository(database)
         return try {
-            Log.e("TAG", "doWork: tryingggg", )
             repository.refreshAsteroids()
             repository.refreshImageOfTheDay()
             Result.success()
