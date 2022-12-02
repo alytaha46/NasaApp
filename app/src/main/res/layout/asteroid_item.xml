@@ -16,8 +16,9 @@
         android:layout_gravity="center"
         app:cardElevation="10dp"
         app:cardCornerRadius="10dp"
-        android:layout_margin="10dp"
-        app:cardBackgroundColor="@color/app_background_accent">
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="5dp"
+        app:cardBackgroundColor="@color/colorAccent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -29,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/default_text_color"
-                android:textSize="22sp"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toTopOf="@id/asteroid_date"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -42,7 +43,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_grey"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/asteroid_name"
@@ -54,6 +55,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 bindAsteroidStatusImage="@{asteroids._hazardous}"
+                android:contentDescription="@string/hazardous_asteroid_image_loading"
                 tools:src="@drawable/ic_status_normal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="1:1"

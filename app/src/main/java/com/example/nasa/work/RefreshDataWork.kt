@@ -21,7 +21,7 @@ class RefreshDataWork(appContext: Context, params: WorkerParameters) :
         val repository = Repository(database)
         return try {
             repository.refreshAsteroids()
-            repository.refreshImageOfTheDay()
+            //repository.refreshImageOfTheDay()
             Result.success()
         } catch (e: HttpException) {
             Result.retry()

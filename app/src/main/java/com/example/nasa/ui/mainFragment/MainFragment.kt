@@ -40,6 +40,10 @@ class MainFragment : Fragment() {
         )
         binding.vm = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+        binding.bottomNavigationView.setOnItemSelectedListener {
+            viewModel.updateLiveData(it.itemId)
+            true
+        }
         val adapter = RecyclerAdapter()
         binding.asteroidRecycler.adapter = adapter
         adapter.onViewClickListener = object : RecyclerAdapter.OnItemClickListener {

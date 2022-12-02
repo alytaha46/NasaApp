@@ -2,7 +2,7 @@ package com.example.nasa.database.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.nasa.constants.Constants
+import com.example.nasa.util.Constants
 import com.example.nasa.domain.Asteroids
 import java.text.SimpleDateFormat
 import java.util.*

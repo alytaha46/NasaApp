@@ -1,5 +1,6 @@
 package com.example.nasa.ui
 
+
 import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
@@ -39,12 +40,15 @@ fun setImage(img: ImageView, status: ImageApiStatus, list: List<ImageOfTheDay>?)
 }
 
 fun useGlide(img: ImageView, list: List<ImageOfTheDay>) {
-    img.scaleType = ImageView.ScaleType.CENTER_CROP
-    img.contentDescription = list[0].title
+    img.contentDescription = String.format(
+        img.context.getString(R.string.nasa_picture_of_day_content_description_format),
+        list[0].title
+    )
     Glide.with(img)
         .load(list[0].url)
         .placeholder(R.drawable.loading_animation)
         .error(R.drawable.ic_broken_image)
+        .centerCrop()
         .into(img)
 }
 
@@ -64,8 +68,11 @@ fun addList(recyclerView: RecyclerView, list: List<Asteroids>?) {
 fun bindAsteroidStatusImage(img: ImageView, isHazardous: Boolean) {
     if (isHazardous) {
         img.setImageResource(R.drawable.ic_status_potentially_hazardous)
+        img.contentDescription =
+            img.context.getString(R.string.potentially_hazardous_asteroid_image)
     } else {
         img.setImageResource(R.drawable.ic_status_normal)
+        img.context.getString(R.string.not_hazardous_asteroid_image)
     }
 }
 
@@ -75,8 +82,10 @@ fun bindAsteroidStatusImage(img: ImageView, isHazardous: Boolean) {
 fun asteroidStatusImage(imageView: ImageView, isHazardous: Boolean) {
     if (isHazardous) {
         imageView.setImageResource(R.drawable.asteroid_hazardous)
+        imageView.context.getString(R.string.potentially_hazardous_asteroid_image)
     } else {
         imageView.setImageResource(R.drawable.asteroid_safe)
+        imageView.context.getString(R.string.not_hazardous_asteroid_image)
     }
 }
 

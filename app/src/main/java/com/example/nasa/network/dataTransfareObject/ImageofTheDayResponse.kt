@@ -1,6 +1,6 @@
 package com.example.nasa.network.dataTransfareObject
 
-import com.example.nasa.constants.Constants
+import com.example.nasa.util.Constants
 import com.example.nasa.database.ImageOfTheDayRoom
 import com.squareup.moshi.JsonClass
 import com.squareup.moshi.Json
