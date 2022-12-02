@@ -13,9 +13,6 @@ data class ImageofTheDayResponse(
     @Json(name = "date")
     val date: String,
 
-    @Json(name = "copyright")
-    val copyright: String,
-
     @Json(name = "media_type")
     val mediaType: String,
 

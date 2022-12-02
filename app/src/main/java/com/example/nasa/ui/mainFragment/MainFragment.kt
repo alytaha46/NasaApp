@@ -1,19 +1,17 @@
 package com.example.nasa.ui.mainFragment
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import com.bumptech.glide.Glide
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.nasa.R
 import com.example.nasa.databinding.FragmentMainBinding
+import com.example.nasa.domain.Asteroids
 import com.example.nasa.viewmodels.MainViewModel
-import java.util.*
 
 
 class MainFragment : Fragment() {
@@ -40,27 +38,21 @@ class MainFragment : Fragment() {
             container,
             false
         )
+        binding.vm = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
-        viewModel.asteroids.observe(viewLifecycleOwner, Observer {
-            it.forEach { it1 ->
-                Log.e("asteroids", "asteroids: $it1")
-            }
-        })
-        viewModel.image.observe(viewLifecycleOwner, Observer {
-            it.forEach { it1 ->
-                binding.activityMainImageOfTheDay.contentDescription = it1.title
-                Glide.with(binding.activityMainImageOfTheDay)
-                    .load(it1.url)
-                    .placeholder(R.drawable.loading_animation)
-                    .into(binding.activityMainImageOfTheDay)
+        val adapter = RecyclerAdapter()
+        binding.asteroidRecycler.adapter = adapter
+        adapter.onViewClickListener = object : RecyclerAdapter.OnItemClickListener {
+            override fun onItemClicked(pos: Int, asteroids: Asteroids) {
+                findNavController().navigate(
+                    MainFragmentDirections.actionMainFragmentToDetailsFragment(
+                        asteroids
+                    )
+                )
             }
 
-
-        })
-
-
+        }
         return binding.root
     }
-
-
 }
+

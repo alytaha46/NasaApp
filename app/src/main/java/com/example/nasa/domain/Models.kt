@@ -14,8 +14,8 @@ data class Asteroids(
     val name:String,
     val date:String,
     val absolute_magnitude: Double,
-    val estimated_diameter_max: Double,
-    val is_potentially_hazardous_asteroid: Boolean,
+    val estimated_diameter: Double,
+    val is_hazardous: Boolean,
     val kilometers_per_second: Double,
     val distanceFromEarth: Double
 ) : Parcelable

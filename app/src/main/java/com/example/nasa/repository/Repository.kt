@@ -2,6 +2,7 @@ package com.example.nasa.repository
 
 import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.example.nasa.constants.Constants
 import com.example.nasa.database.NasaDatabase
@@ -36,27 +37,22 @@ class Repository(private val database: NasaDatabase) {
 
     suspend fun refreshAsteroids() {
         withContext(Dispatchers.IO) {
-            try {
-                val response: String = Network.networkCall.getAsteroids().await()
-                val jsonResponse: JSONObject = JSONObject(response)
-                val asteroidsList: List<AsteroidsRoom> = parseAsteroidsJsonResult(jsonResponse)
-                database.AsteroidsDao.insertAsteroids(asteroidsList)
-                database.AsteroidsDao.deleteOldAsteroids(getTodayLong())
-            } catch (e: Exception) {
-                Log.e("Asteroids Exception", "refreshAsteroids: ${e.message}")
-            }
+            val response: String = Network.networkCall.getAsteroids().await()
+            val jsonResponse: JSONObject = JSONObject(response)
+            val asteroidsList: List<AsteroidsRoom> = parseAsteroidsJsonResult(jsonResponse)
+            database.AsteroidsDao.insertAsteroids(asteroidsList)
+            database.AsteroidsDao.deleteOldAsteroids(getTodayLong())
         }
     }
 
     suspend fun refreshImageOfTheDay() {
         withContext(Dispatchers.IO) {
-            try {
-                val response: ImageofTheDayResponse = Network.networkCall.getImageOfTheDay().await()
+            val response: ImageofTheDayResponse = Network.networkCall.getImageOfTheDay().await()
+            if (response.mediaType == "image") {
                 database.ImageOfTheDayDao.insertImage(response.asDatabaseModel())
                 database.ImageOfTheDayDao.deleteOldImage()
-            } catch (e: Exception) {
-                Log.e("Image Exception", "refreshAsteroids: ${e.message}")
             }
+
         }
     }
 

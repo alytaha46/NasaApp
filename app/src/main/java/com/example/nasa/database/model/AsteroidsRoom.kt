@@ -27,8 +27,8 @@ fun List<AsteroidsRoom>.asDomainModel(): List<Asteroids> {
             name = it.name,
             date = parseDateToString(it.date),
             absolute_magnitude = it.absolute_magnitude,
-            estimated_diameter_max = it.estimated_diameter_max,
-            is_potentially_hazardous_asteroid = it.is_potentially_hazardous_asteroid,
+            estimated_diameter = it.estimated_diameter_max,
+            is_hazardous = it.is_potentially_hazardous_asteroid,
             kilometers_per_second = it.kilometers_per_second,
             distanceFromEarth = it.distanceFromEarth
         )
