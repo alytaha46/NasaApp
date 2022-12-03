@@ -3,12 +3,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/show_all_asteroids"
+        android:icon="@drawable/ic_saved"
         android:title="@string/saved_asteroids" />
     <item
         android:id="@+id/show_week_asteroids"
+        android:icon="@drawable/ic_next_week"
         android:title="@string/next_week_asteroids" />
     <item
         android:id="@+id/show_today_asteroids"
+        android:icon="@drawable/ic_today"
         android:title="@string/today_asteroids" />
 
 </menu>
