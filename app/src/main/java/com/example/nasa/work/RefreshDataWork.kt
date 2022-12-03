@@ -8,6 +8,7 @@ import com.example.nasa.database.getDatabase
 import com.example.nasa.repository.Repository
 import kotlinx.coroutines.async
 import retrofit2.HttpException
+import timber.log.Timber
 
 class RefreshDataWork(appContext: Context, params: WorkerParameters) :
     CoroutineWorker(appContext, params) {

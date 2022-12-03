@@ -10,6 +10,7 @@ import com.example.nasa.repository.Repository
 import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 enum class ImageApiStatus { LOADING, ERROR, DONE }
 
@@ -34,7 +35,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 try {
                     repository.refreshAsteroids()
                 } catch (e: Exception) {
-                    Log.e("Asteroids Exception", "refreshAsteroids: ${e.message}")
+                    Timber.e( "refreshAsteroids: ${e.message}")
                 }
             }
             async {
@@ -44,7 +45,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                     _imageStatus.value = ImageApiStatus.DONE
                 } catch (e: Exception) {
                     _imageStatus.value = ImageApiStatus.ERROR
-                    Log.e("Image Exception", "Image Exception: $e")
+                    Timber.e( "Image Exception: $e")
                 }
             }
         }

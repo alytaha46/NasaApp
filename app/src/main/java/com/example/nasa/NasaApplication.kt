@@ -27,17 +27,18 @@ class NasaApplication : Application() {
     private fun setupRecurringWork() {
         val constraints = Constraints.Builder()
             .setRequiredNetworkType(NetworkType.CONNECTED)
+            .setRequiresBatteryNotLow(true)
             .setRequiresCharging(true)
             .build()
 
-        val repeatingRequest
-                = PeriodicWorkRequestBuilder<RefreshDataWork>(1, TimeUnit.DAYS)
+        val repeatingRequest = PeriodicWorkRequestBuilder<RefreshDataWork>(1, TimeUnit.DAYS)
             .setConstraints(constraints)
             .build()
 
         WorkManager.getInstance().enqueueUniquePeriodicWork(
             RefreshDataWork.WORK_NAME,
             ExistingPeriodicWorkPolicy.KEEP,
-            repeatingRequest)
+            repeatingRequest
+        )
     }
 }
