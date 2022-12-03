@@ -61,7 +61,7 @@ fun noConnection(progressBar: ProgressBar, list: List<Asteroids>?) {
 fun addList(recyclerView: RecyclerView, list: List<Asteroids>?) {
     val adapter = recyclerView.adapter as RecyclerAdapter
     if (list != null)
-        adapter.updateList(list)
+        adapter.submitList(list)
 }
 
 @BindingAdapter("bindAsteroidStatusImage")

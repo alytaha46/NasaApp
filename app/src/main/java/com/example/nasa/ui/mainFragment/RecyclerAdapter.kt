@@ -1,21 +1,27 @@
 package com.example.nasa.ui.mainFragment
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nasa.R
 import com.example.nasa.databinding.AsteroidItemBinding
 import com.example.nasa.domain.Asteroids
 
-class RecyclerAdapter() : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
-    var asteroids: List<Asteroids> = listOf()
+class RecyclerAdapter() :
+    ListAdapter<Asteroids, RecyclerAdapter.ViewHolder>(AsteroidsDiffCallback()) {
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun updateList(newlist: List<Asteroids>) {
-        asteroids = newlist
-        notifyDataSetChanged()
+    class AsteroidsDiffCallback : DiffUtil.ItemCallback<Asteroids>() {
+        override fun areItemsTheSame(oldItem: Asteroids, newItem: Asteroids): Boolean {
+            return oldItem === newItem
+        }
+
+        override fun areContentsTheSame(oldItem: Asteroids, newItem: Asteroids): Boolean {
+            return oldItem.id == newItem.id
+        }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -27,17 +33,15 @@ class RecyclerAdapter() : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.binding.asteroids = asteroids[position]
+        holder.binding.asteroids = getItem(position)
+        holder.binding.executePendingBindings()
         if (onViewClickListener != null) {
             holder.binding.cardView.setOnClickListener {
-                onViewClickListener?.onItemClicked(position, asteroids[position])
+                onViewClickListener?.onItemClicked(position, getItem(position))
             }
         }
     }
 
-    override fun getItemCount(): Int {
-        return asteroids.size
-    }
 
     interface OnItemClickListener {
         fun onItemClicked(pos: Int, asteroids: Asteroids)
@@ -47,6 +51,5 @@ class RecyclerAdapter() : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
 
     class ViewHolder(val binding: AsteroidItemBinding) : RecyclerView.ViewHolder(binding.root) {
-
     }
 }
