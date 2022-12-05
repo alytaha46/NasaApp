@@ -45,7 +45,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                     _imageStatus.value = ImageApiStatus.DONE
                 } catch (e: Exception) {
                     _imageStatus.value = ImageApiStatus.ERROR
-                    Timber.e( "Image Exception: $e")
+                    Timber.e( "Image Exception: ${e.message}")
                 }
             }
         }
