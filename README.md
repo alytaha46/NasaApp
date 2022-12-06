@@ -29,7 +29,7 @@ Fetching data from the internet, saving data to a database, and display the data
 
 ## Screenshots
 
-[<img src="/readme/Wallabag%20Reading%20List.png" width="200"
+[<img src="/readme/Screenshot_1.jpg" width="200"
 hspace="10" vspace="10">](/readme/Screenshot_1.jpg)
 ![App Screenshot](https://github.com/alytaha46/NasaApp/tree/master/readme/Screenshot_1.jpg)
 ![App Screenshot](https://github.com/alytaha46/NasaApp/tree/master/readme/Screenshot_2.png)
