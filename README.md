@@ -20,12 +20,12 @@ compelling UI.
 
 **Background Task:** WorkManager
 
-**UI:** Jetback library
+**UI:** Jetpack library
 
 - Binding Adapters
-- LiveData
-- Navigation Compnent
-- Recycler View
+  - LiveData
+  - Navigation Component
+  - Recycler View
 
 ## Screenshots
 
@@ -42,7 +42,7 @@ hspace="10" vspace="10">](/readme/Screenshot_3.png)
 Contributions are always welcome! Here are a few ways you can help:
 
 - [Report bugs and make suggestions.](https://github.com/alytaha46/NasaApp/issues)
-- Write some code. Please follow the code style used in the project to make a review process faster.
+  - Write some code. Please follow the code style used in the project to make a review process faster.
 
 ## Environment Variables
 
