@@ -31,16 +31,10 @@ compelling UI.
 
 [<img src="/readme/Screenshot_1.png" width="200"
 hspace="10" vspace="10">](/readme/Screenshot_1.png)
-
-
 [<img src="/readme/Screenshot_2.png" width="200"
 hspace="10" vspace="10">](/readme/Screenshot_2.png)
-
-
 [<img src="/readme/Screenshot_3.png" width="200"
 hspace="10" vspace="10">](/readme/Screenshot_3.png)
-
-
 [<img src="/readme/Screenshot_4.png" width="200"
 hspace="10" vspace="10">](/readme/Screenshot_4.png)
 
