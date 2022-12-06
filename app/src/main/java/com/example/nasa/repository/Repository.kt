@@ -61,20 +61,19 @@ class Repository(private val database: NasaDatabase) {
     }
 
     private suspend fun getAsteroidsFromApi(): List<AsteroidsRoom> {
-        var asteroidsList: ArrayList<AsteroidsRoom> = arrayListOf()
-        withContext(Dispatchers.IO) {
+        val asteroidsList = withContext(Dispatchers.IO) {
             val response: String =
                 Network.networkCall.getAsteroids(
                     getTodayDate(),
                     getLastDayDate()
                 ).await()
             val jsonResponse: JSONObject = JSONObject(response)
-            asteroidsList = parseAsteroidsJsonResult(jsonResponse)
+            return@withContext parseAsteroidsJsonResult(jsonResponse)
         }
         return asteroidsList
     }
 
-    private suspend fun deleteOldAsteroids(date :Long){
+    private suspend fun deleteOldAsteroids(date: Long) {
         database.AsteroidsDao.deleteOldAsteroids(date)
     }
 
