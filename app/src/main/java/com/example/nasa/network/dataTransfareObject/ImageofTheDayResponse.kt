@@ -1,7 +1,7 @@
 package com.example.nasa.network.dataTransfareObject
 
 import com.example.nasa.util.Constants
-import com.example.nasa.database.ImageOfTheDayRoom
+import com.example.nasa.database.model.ImageOfTheDayRoom
 import com.squareup.moshi.JsonClass
 import com.squareup.moshi.Json
 import java.text.SimpleDateFormat

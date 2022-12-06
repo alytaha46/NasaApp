@@ -4,9 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.example.nasa.util.Constants
 import com.example.nasa.database.NasaDatabase
-import com.example.nasa.database.asDomainModel
-import com.example.nasa.database.model.AsteroidsRoom
 import com.example.nasa.database.model.asDomainModel
+import com.example.nasa.database.model.AsteroidsRoom
 import com.example.nasa.domain.Asteroids
 import com.example.nasa.domain.ImageOfTheDay
 import com.example.nasa.network.Network
@@ -15,35 +14,32 @@ import com.example.nasa.network.dataTransfareObject.asDatabaseModel
 import com.example.nasa.network.dataTransfareObject.parseAsteroidsJsonResult
 import com.example.nasa.util.Dates.getLastDayDate
 import com.example.nasa.util.Dates.getTodayDate
-import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
-import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 class Repository(private val database: NasaDatabase) {
 
     val allAsteroids: LiveData<List<Asteroids>> =
-        Transformations.map(database.AsteroidsDao.getAllAsteroids(getTodayLong()))
+        Transformations.map(database.asteroidsDao.getAllAsteroids(getTodayLong()))
         {
             it.asDomainModel()
         }
     val todayAsteroids: LiveData<List<Asteroids>> =
-        Transformations.map(database.AsteroidsDao.getTodayAsteroids(getTodayLong()))
+        Transformations.map(database.asteroidsDao.getTodayAsteroids(getTodayLong()))
         {
             it.asDomainModel()
         }
     val weekAsteroids: LiveData<List<Asteroids>> =
-        Transformations.map(database.AsteroidsDao.getWeekAsteroids(getTodayLong()))
+        Transformations.map(database.asteroidsDao.getWeekAsteroids(getTodayLong()))
         {
             it.asDomainModel()
         }
 
     val imageOfTheDay: LiveData<List<ImageOfTheDay>> =
-        Transformations.map(database.ImageOfTheDayDao.getImage())
+        Transformations.map(database.imageOfTheDayDao.getImage())
         {
             it.asDomainModel()
         }
@@ -57,7 +53,7 @@ class Repository(private val database: NasaDatabase) {
     }
 
     private suspend fun cacheAsteroidsToRoom(list: List<AsteroidsRoom>) {
-        database.AsteroidsDao.insertAsteroids(list)
+        database.asteroidsDao.insertAsteroids(list)
     }
 
     private suspend fun getAsteroidsFromApi(): List<AsteroidsRoom> {
@@ -74,15 +70,15 @@ class Repository(private val database: NasaDatabase) {
     }
 
     private suspend fun deleteOldAsteroids(date: Long) {
-        database.AsteroidsDao.deleteOldAsteroids(date)
+        database.asteroidsDao.deleteOldAsteroids(date)
     }
 
     suspend fun refreshImageOfTheDay() {
         withContext(Dispatchers.IO) {
             val response: ImageofTheDayResponse = Network.networkCall.getImageOfTheDay().await()
             if (response.mediaType == "image") {
-                database.ImageOfTheDayDao.insertImage(response.asDatabaseModel())
-                database.ImageOfTheDayDao.deleteOldImage()
+                database.imageOfTheDayDao.insertImage(response.asDatabaseModel())
+                database.imageOfTheDayDao.deleteOldImage()
             }
 
         }
