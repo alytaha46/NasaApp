@@ -18,6 +18,8 @@ compelling UI.
 
 - **Offline Caching:** Room
 
+- **Background Threads:** Kotlin Coroutines
+
 - **Background Task:** WorkManager
 
 - **UI:** Jetpack library
