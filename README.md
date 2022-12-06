@@ -29,10 +29,10 @@ Fetching data from the internet, saving data to a database, and display the data
 
 ## Screenshots
 
-![App Screenshot](https://github.com/alytaha46/NasaApp/tree/master/readme/Screenshot_1)
-![App Screenshot](https://github.com/alytaha46/NasaApp/tree/master/readme/Screenshot_2)
-![App Screenshot](https://github.com/alytaha46/NasaApp/tree/master/readme/Screenshot_3)
-![App Screenshot](https://github.com/alytaha46/NasaApp/tree/master/readme/Screenshot_4)
+![App Screenshot](https://github.com/alytaha46/NasaApp/tree/master/readme/Screenshot_1.png)
+![App Screenshot](https://github.com/alytaha46/NasaApp/tree/master/readme/Screenshot_2.png)
+![App Screenshot](https://github.com/alytaha46/NasaApp/tree/master/readme/Screenshot_3.png)
+![App Screenshot](https://github.com/alytaha46/NasaApp/tree/master/readme/Screenshot_4.png)
 
 
 ## Contributing
