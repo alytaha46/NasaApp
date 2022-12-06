@@ -20,7 +20,7 @@ compelling UI.
 
 **Background Task:** WorkManager
 
-**UI:** Jetback library
+**UI:** Jetpack library
 
 - Binding Adapters
 - LiveData
