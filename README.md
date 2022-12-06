@@ -12,21 +12,20 @@ compelling UI.
 
 ## Tech
 
-**Architecture:** MVVM with Repository Pattern
+-**Architecture:** MVVM with Repository Pattern
 
-**Client:** Retrofit
+-**Client:** Retrofit
 
-**Offline Caching:** Room
+-**Offline Caching:** Room
 
-**Background Task:** WorkManager
+-**Background Task:** WorkManager
 
-**UI:** Jetpack library
-
-- Binding Adapters
+-**UI:** Jetpack library
+  - Binding Adapters
   - LiveData
   - Navigation Component
   - Recycler View
-
+  
 ## Screenshots
 
 [<img src="/readme/Screenshot_1.png" width="253"
