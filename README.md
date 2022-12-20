@@ -5,6 +5,8 @@ Nasa Radar is an app to view the asteroids detected by NASA that pass near Earth
 You can view all the detected asteroids given a period of time with data such as the size, velocity,
 distance to earth and if they are potentially hazardous.
 
+[The Final Output](https://media.giphy.com/media/V70U29dLypAszuI6ag/giphy.gif)
+
 ## Lessons Learned
 
 Fetching data from the internet, saving data to a database, and display the data in a clear,
