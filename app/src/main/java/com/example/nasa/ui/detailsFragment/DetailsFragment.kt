@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import com.example.nasa.R
@@ -17,7 +18,7 @@ import com.example.nasa.viewmodels.DetailsViewModel
 
 class DetailsFragment : Fragment() {
 
-    private lateinit var viewModel: DetailsViewModel
+    private val viewModel: DetailsViewModel by viewModels()
     private lateinit var binding: FragmentDetailsBinding
 
     override fun onCreateView(
@@ -27,10 +28,7 @@ class DetailsFragment : Fragment() {
 
         val args by navArgs<DetailsFragmentArgs>()
         val asteroid = args.asteroid
-        viewModel = ViewModelProvider(
-            this,
-            DetailsViewModel.DetailsViewModelFactory(asteroid)
-        )[DetailsViewModel::class.java]
+        viewModel.setAsteroids(asteroid)
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_details, container, false)
         binding.lifecycleOwner = this
         binding.vm = viewModel

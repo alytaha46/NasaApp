@@ -12,18 +12,13 @@ import com.example.nasa.R
 import com.example.nasa.databinding.FragmentMainBinding
 import com.example.nasa.domain.Asteroids
 import com.example.nasa.viewmodels.MainViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import timber.log.Timber
 
 
-class MainFragment : Fragment() {
+class MainFragment : Fragment(), RecyclerAdapter.OnItemClickListener {
 
-    private val viewModel: MainViewModel by lazy {
-        val activity = requireNotNull(this.activity) {
-        }
-        ViewModelProvider(
-            this,
-            MainViewModel.Factory(activity.application)
-        )[MainViewModel::class.java]
-    }
+    private val viewModel: MainViewModel by viewModel()
 
     private lateinit var binding: FragmentMainBinding
 
@@ -50,17 +45,16 @@ class MainFragment : Fragment() {
 
         val adapter = RecyclerAdapter()
         binding.asteroidRecycler.adapter = adapter
-        adapter.onViewClickListener = object : RecyclerAdapter.OnItemClickListener {
-            override fun onItemClicked(pos: Int, asteroids: Asteroids) {
-                findNavController().navigate(
-                    MainFragmentDirections.actionMainFragmentToDetailsFragment(
-                        asteroids
-                    )
-                )
-            }
-
-        }
+        adapter.onViewClickListener = this
         return binding.root
+    }
+
+    override fun onItemClicked(pos: Int, asteroids: Asteroids) {
+        findNavController().navigate(
+            MainFragmentDirections.actionMainFragmentToDetailsFragment(
+                asteroids
+            )
+        )
     }
 }
 

@@ -1,25 +1,25 @@
 package com.example.nasa.work
 
 import android.content.Context
-import android.util.Log
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
-import com.example.nasa.database.getDatabase
 import com.example.nasa.repository.Repository
-import kotlinx.coroutines.async
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
+
+
 import retrofit2.HttpException
 import timber.log.Timber
 
 class RefreshDataWork(appContext: Context, params: WorkerParameters) :
-    CoroutineWorker(appContext, params) {
+    CoroutineWorker(appContext, params), KoinComponent {
 
     companion object {
         const val WORK_NAME = "RefreshDataWorker"
     }
 
     override suspend fun doWork(): Result {
-        val database = getDatabase(applicationContext)
-        val repository = Repository(database)
+        val repository:Repository by inject()
         return try {
             repository.refreshAsteroids()
             //repository.refreshImageOfTheDay()

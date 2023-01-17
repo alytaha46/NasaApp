@@ -18,21 +18,6 @@ import com.example.nasa.database.model.ImageOfTheDayRoom
 )
 @TypeConverters(DateConverter::class)
 abstract class NasaDatabase : RoomDatabase() {
-    abstract val imageOfTheDayDao: ImageOfTheDayDao
-    abstract val asteroidsDao: AsteroidsDao
-}
-
-private lateinit var INSTANCE: NasaDatabase
-
-fun getDatabase(context: Context): NasaDatabase {
-    synchronized(NasaDatabase::class.java) {
-        if (!::INSTANCE.isInitialized) {
-            INSTANCE = Room.databaseBuilder(
-                context.applicationContext,
-                NasaDatabase::class.java,
-                "nasa"
-            ).fallbackToDestructiveMigration().build()
-        }
-    }
-    return INSTANCE
+    abstract fun imageOfTheDayDao(): ImageOfTheDayDao
+    abstract fun asteroidsDao(): AsteroidsDao
 }

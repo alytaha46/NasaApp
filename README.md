@@ -16,6 +16,8 @@ compelling UI.
 
 - **Architecture:** MVVM with Repository Pattern
 
+- **Dependency Injection:** Koin
+
 - **Client:** Retrofit
 
 - **Offline Caching:** Room

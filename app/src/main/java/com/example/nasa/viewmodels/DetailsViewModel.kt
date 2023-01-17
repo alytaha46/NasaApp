@@ -7,17 +7,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.nasa.domain.Asteroids
 
-class DetailsViewModel(asteroids: Asteroids) : ViewModel() {
-    private val _asteroids = MutableLiveData(asteroids)
+class DetailsViewModel() : ViewModel() {
+    private val _asteroids = MutableLiveData<Asteroids>()
     val asteroids: LiveData<Asteroids> get() = _asteroids
 
-    class DetailsViewModelFactory(val asteroids: Asteroids) : ViewModelProvider.Factory {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(DetailsViewModel::class.java)) {
-                @Suppress("UNCHECKED_CAST")
-                return DetailsViewModel(asteroids) as T
-            }
-            throw IllegalArgumentException("Unable to construct viewmodel")
-        }
+    fun setAsteroids(asteroids: Asteroids) {
+        _asteroids.value = asteroids
     }
 }
